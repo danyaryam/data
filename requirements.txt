@@ -1,7 +1,6 @@
-# PsyScreening — Mental Health Screening System
 # Install: pip install -r requirements.txt
-# Run notebook : jupyter notebook PsyScreening_Complete.ipynb
-# Run dashboard: streamlit run streamlit_app.py
+# Run notebook : jupyter notebook PsyScreening.ipynb
+# Run dashboard: streamlit run app.py
 
 pandas==2.2.2
 numpy==1.26.4
