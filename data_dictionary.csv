@@ -1,0 +1,28 @@
+Kolom,Tipe Data,Deskripsi,Contoh Nilai,Missing,Aksi
+Timestamp,object,"Waktu responden mengisi survei (format ISO 8601). Tidak digunakan dalam pemodelan.",2014-08-27 11:29:31,0,Drop
+Age,int64,"Usia responden dalam tahun. Terdapat outlier ekstrem (nilai negatif dan > 100 juta).",27,0,"Filter: hanya 15–75 tahun"
+Gender,object,"Gender responden. Terdapat 49+ variasi teks tidak konsisten akibat input bebas.",Male / female / Non-binary,0,"Normalisasi → Male / Female / Other"
+Country,object,"Negara tempat responden bekerja. Mayoritas dari US (59%) dan UK (15%).",United States,0,Drop (terlalu banyak kategori)
+state,object,"Negara bagian (khusus responden US). Tidak relevan untuk model global.",CA,515,Drop
+self_employed,object,"Apakah responden bekerja sebagai wiraswasta / freelance.",Yes / No,18,"Fillna → 'No'"
+family_history,object,"Apakah ada riwayat gangguan kesehatan mental dalam keluarga.",Yes / No,0,Label encode
+treatment,object,"TARGET: Apakah responden pernah mencari bantuan profesional kesehatan mental.",Yes / No,0,"Encode → 1 (Yes) / 0 (No)"
+work_interfere,object,"Seberapa sering masalah kesehatan mental mengganggu pekerjaan (jika ada).",Sometimes / Never / Rarely / Often,264,"Fillna → 'Unknown'; Ordinal encode: Never=0..Often=3"
+no_employees,object,"Jumlah karyawan di perusahaan tempat responden bekerja.",6-25 / 26-100 / More than 1000,0,"Ordinal encode: 1-5=0 .. More than 1000=5"
+remote_work,object,"Apakah responden bekerja remote setidaknya 50% waktu.",Yes / No,0,Label encode
+tech_company,object,"Apakah perusahaan responden bergerak di bidang teknologi.",Yes / No,0,Label encode
+benefits,object,"Apakah perusahaan menyediakan benefit untuk kesehatan mental.",Yes / No / Don't know,0,Label encode
+care_options,object,"Apakah responden mengetahui opsi layanan kesehatan mental yang tersedia di perusahaan.",Yes / No / Not sure,0,Label encode
+wellness_program,object,"Apakah perusahaan pernah mengadakan program wellness / kesehatan mental.",Yes / No / Don't know,0,Label encode
+seek_help,object,"Apakah perusahaan menyediakan sumber daya untuk mencari bantuan kesehatan mental.",Yes / No / Don't know,0,Label encode
+anonymity,object,"Apakah anonimitas responden terlindungi jika menggunakan layanan kesehatan mental.",Yes / No / Don't know,0,Label encode
+leave,object,"Seberapa mudah mengambil cuti karena alasan kesehatan mental.",Very easy / Somewhat easy / Somewhat difficult / Very difficult / Don't know,0,"Ordinal encode: Very easy=0 .. Very difficult=4"
+mental_health_consequence,object,"Apakah responden percaya bahwa membicarakan masalah kesehatan mental akan berdampak negatif di tempat kerja.",Yes / No / Maybe,0,Label encode
+phys_health_consequence,object,"Apakah responden percaya bahwa membicarakan masalah fisik akan berdampak negatif di tempat kerja.",Yes / No / Maybe,0,Label encode
+coworkers,object,"Seberapa nyaman responden mendiskusikan kesehatan mental dengan rekan kerja.",Yes / No / Some of them,0,Label encode
+supervisor,object,"Seberapa nyaman responden mendiskusikan kesehatan mental dengan atasan.",Yes / No / Some of them,0,Label encode
+mental_health_interview,object,"Apakah responden akan menyebutkan masalah kesehatan mental dalam wawancara kerja.",Yes / No / Maybe,0,Label encode
+phys_health_interview,object,"Apakah responden akan menyebutkan masalah fisik dalam wawancara kerja.",Yes / No / Maybe,0,Label encode
+mental_vs_physical,object,"Apakah responden merasa perusahaan menganggap kesehatan mental sama pentingnya dengan kesehatan fisik.",Yes / No / Don't know,0,Label encode
+obs_consequence,object,"Apakah responden pernah menyaksikan atau mendengar konsekuensi negatif terkait kesehatan mental di tempat kerja.",Yes / No,0,Label encode
+comments,object,"Komentar tambahan dari responden (teks bebas). Sangat jarang diisi dan tidak terstruktur.",,1095,Drop
