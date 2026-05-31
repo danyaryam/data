@@ -149,13 +149,13 @@ if page == "📊 Overview":
     with c1:
         st.metric("Total Responden", f"{total:,}")
     with c2:
-        st.metric("Mencari Treatment", f"{treatment_yes}\n({pct_treatment:.1%})")
+        st.metric("Mencari Treatment", f"{treatment_yes}\n")
     with c3:
         st.metric("Rata-rata Usia", f"{avg_age:.0f} th")
     with c4:
-        st.metric("Perempuan", f"{female_count}\n({female_count/total:.1%})")
+        st.metric("Perempuan", f"{female_count}\n")
     with c5:
-        st.metric("Status Data", "✅ Clean")
+        st.metric("Status Data", "Clean")
 
     st.markdown("---")
 
@@ -221,7 +221,7 @@ if page == "📊 Overview":
 
     st.markdown("---")
     st.markdown("""
-    ### ✅ Data Preparation Completed
+    ### Data Preparation Completed
     
     **Cleaning Steps Applied:**
     1. ✅ Drop irrelevant columns (Timestamp, state, comments, Country)
@@ -311,11 +311,10 @@ elif page == "❓ Business Questions":
             (Actual: {rate_with:.1f}% vs Target: 60%)
             """)
         
-        st.markdown(f"""<div style="background:#f0fdf4;border-left:4px solid #4DA8A1;border-radius:6px;padding:12px 16px;margin-top:16px">
-        💡 <b>Kesimpulan</b>: Benefit + wellness program meningkatkan treatment-seeking sebesar <b>{gap:.1f} persentase poin</b>. 
-        Ini membuktikan bahwa investasi HR dalam mental health infrastructure <b>efektif meningkatkan adoption rate</b> 
-        untuk healthcare services. Walau belum mencapai 60%, angka 57.7% sudah cukup signifikan.
-        </div>""", unsafe_allow_html=True)
+        st.success(f""" **Kesimpulan**: Benefit + wellness program meningkatkan treatment-seeking sebesar **{gap:.1f} persentase poin**. 
+        Ini membuktikan bahwa investasi HR dalam mental health infrastructure **efektif meningkatkan adoption rate** 
+        untuk healthcare services. Walau belum mencapai 60%, angka 57.7% sudah cukup signifikan.""", icon="💡")
+
 
     elif bq_selected == "BQ-2: Gender Disparity dalam Work Interference":
         st.subheader("👥 BQ-2: Apakah perempuan 15-20pp lebih tinggi dalam treatment-seeking?")
@@ -388,12 +387,10 @@ elif page == "❓ Business Questions":
             (Actual: +{gender_gap:.1f}pp vs Target: 15-20pp)
             """)
         
-        st.markdown(f"""<div style="background:#f0fdf4;border-left:4px solid #4DA8A1;border-radius:6px;padding:12px 16px;margin-top:16px">
-        💡 <b>Kesimpulan</b>: Dari responden yang mengalami work interference "Often" atau "Sometimes", 
-        perempuan menunjukkan treatment-seeking rate <b>{gender_gap:.1f}pp lebih tinggi</b> dibanding laki-laki. 
-        Perbedaan ini menunjukkan bahwa <b>perempuan lebih berani mengakui masalah mental dan mencari bantuan profesional</b>. 
-        Insight ini relevan untuk strategi gender-specific mental health intervention.
-        </div>""", unsafe_allow_html=True)
+        st.success(f""" Dari responden yang mengalami work interference "Often" atau "Sometimes", 
+        perempuan menunjukkan treatment-seeking rate **{gender_gap:.1f}pp lebih tinggi** dibanding laki-laki. 
+        Perbedaan ini menunjukkan bahwa **perempuan lebih berani mengakui masalah mental dan mencari bantuan profesional**. 
+        Insight ini relevan untuk strategi gender-specific mental health intervention.""", icon="💡")
 
     else:  # BQ-3
         st.subheader("📊 BQ-3: Top 5 Faktor Prediktif — Apakah 50% informasi sudah cukup?")
@@ -443,12 +440,10 @@ elif page == "❓ Business Questions":
         💡 **Key Finding**: Hanya **4 faktor** (dari 22 total) sudah mencapai **52.7%** dari total informasi!
         """)
         
-        st.markdown(f"""<div style="background:#f0fdf4;border-left:4px solid #4DA8A1;border-radius:6px;padding:12px 16px;margin-top:16px">
-        💡 <b>Kesimpulan</b>: Top 5 faktor menjelaskan <b>58.6%</b> dari total korelasi absolut terhadap treatment-seeking. 
-        Bahkan top 4 sudah mencapai 52.7%. Ini menunjukkan <b>efisiensi yang tinggi</b> — perusahaan dapat fokus pada 
+        st.success(f""" **Kesimpulan**: Top 5 faktor menjelaskan **58.6%** dari total korelasi absolut terhadap treatment-seeking. 
+        Bahkan top 4 sudah mencapai 52.7%. Ini menunjukkan **efisiensi yang tinggi** — perusahaan dapat fokus pada 
         4-5 faktor utama (work interference, riwayat keluarga, care options, benefits) untuk program mental health 
-        intervention yang targeted dan cost-effective, daripada mencoba handle semua dimensi sekaligus.
-        </div>""", unsafe_allow_html=True)
+        intervention yang targeted dan cost-effective, daripada mencoba handle semua dimensi sekaligus.""", icon="💡")
 
 
 # ──────────────────────────────────────────────
@@ -790,64 +785,65 @@ else:  # Data Dictionary
         - **Format**: CSV (all numeric)
         - **Ready for ML**: ✅ YES
         """)
-
-
-    c1, c2, c3, c4 = st.columns(4)
-    with c1:
-        st.markdown(f"""<div class="metric-card">
-            <p class="metric-title">Accuracy</p>
-            <p class="metric-value">{meta['test_accuracy']:.1%}</p></div>""", unsafe_allow_html=True)
-    with c2:
-        st.markdown(f"""<div class="metric-card">
-            <p class="metric-title">F1-Score</p>
-            <p class="metric-value">{meta['test_f1']:.3f}</p></div>""", unsafe_allow_html=True)
-    with c3:
-        st.markdown(f"""<div class="metric-card">
-            <p class="metric-title">ROC-AUC</p>
-            <p class="metric-value">{meta['test_auc']:.4f}</p></div>""", unsafe_allow_html=True)
-    with c4:
-        st.markdown(f"""<div class="metric-card">
-            <p class="metric-title">Test Samples</p>
-            <p class="metric-value">{meta['test_size']}</p></div>""", unsafe_allow_html=True)
-
-    st.markdown("---")
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.subheader("Perbandingan Model (ROC-AUC)")
-        model_names = list(meta["all_model_aucs"].keys())
-        auc_vals    = list(meta["all_model_aucs"].values())
-        clrs = [PALETTE["primary"] if n == meta["champion_model"] else PALETTE["muted"] for n in model_names]
-        fig, ax = plt.subplots(figsize=(5, 3.5))
-        bars = ax.barh(model_names, auc_vals, color=clrs, edgecolor="white")
-        ax.set_xlim(0.80, 0.89)
-        for bar, val in zip(bars, auc_vals):
-            ax.text(val + 0.001, bar.get_y() + bar.get_height()/2,
-                    f"{val:.4f}", va="center", fontsize=10)
-        ax.set_xlabel("ROC-AUC")
-        ax.set_title("Model comparison after tuning", fontsize=12)
-        ax.spines[["top","right"]].set_visible(False)
-        st.pyplot(fig)
-        plt.close()
-
-    with col2:
-        st.subheader("Perbaikan Baseline vs Tuned")
-        phases = ["Baseline RF", "Tuned RF", "Baseline LR", "Tuned LR", "Baseline GB", "Tuned GB"]
-        values = [0.7879, meta["all_model_aucs"].get("Random Forest",0.86),
-                  0.7755, meta["all_model_aucs"].get("Logistic Regression",0.86),
-                  0.7769, meta["all_model_aucs"].get("Gradient Boosting",0.86)]
-        clrs2  = [PALETTE["muted"], PALETTE["primary"],
-                  PALETTE["muted"], PALETTE["primary"],
-                  PALETTE["muted"], PALETTE["primary"]]
-        fig, ax = plt.subplots(figsize=(5, 3.5))
-        ax.bar(phases, values, color=clrs2, edgecolor="white", width=0.6)
-        ax.set_ylim(0.70, 0.90)
-        ax.set_ylabel("F1 / AUC Score")
-        ax.set_title("Baseline CV F1 vs Tuned AUC", fontsize=12)
-        ax.tick_params(axis="x", rotation=30)
-        ax.spines[["top","right"]].set_visible(False)
-        st.pyplot(fig)
-        plt.close()
+    
+    # TODO: Model evaluation metrics section (requires model results data)
+    # Uncomment when model metadata is available
+    # c1, c2, c3, c4 = st.columns(4)
+    # with c1:
+    #     st.markdown(f"""<div class="metric-card">
+    #         <p class="metric-title">Accuracy</p>
+    #         <p class="metric-value">{meta['test_accuracy']:.1%}</p></div>""", unsafe_allow_html=True)
+    # with c2:
+    #     st.markdown(f"""<div class="metric-card">
+    #         <p class="metric-title">F1-Score</p>
+    #         <p class="metric-value">{meta['test_f1']:.3f}</p></div>""", unsafe_allow_html=True)
+    # with c3:
+    #     st.markdown(f"""<div class="metric-card">
+    #         <p class="metric-title">ROC-AUC</p>
+    #         <p class="metric-value">{meta['test_auc']:.4f}</p></div>""", unsafe_allow_html=True)
+    # with c4:
+    #     st.markdown(f"""<div class="metric-card">
+    #         <p class="metric-title">Test Samples</p>
+    #         <p class="metric-value">{meta['test_size']}</p></div>""", unsafe_allow_html=True)
+    #
+    # st.markdown("---")
+    # col1, col2 = st.columns(2)
+    #
+    # with col1:
+    #     st.subheader("Perbandingan Model (ROC-AUC)")
+    #     model_names = list(meta["all_model_aucs"].keys())
+    #     auc_vals    = list(meta["all_model_aucs"].values())
+    #     clrs = [PALETTE["primary"] if n == meta["champion_model"] else PALETTE["muted"] for n in model_names]
+    #     fig, ax = plt.subplots(figsize=(5, 3.5))
+    #     bars = ax.barh(model_names, auc_vals, color=clrs, edgecolor="white")
+    #     ax.set_xlim(0.80, 0.89)
+    #     for bar, val in zip(bars, auc_vals):
+    #         ax.text(val + 0.001, bar.get_y() + bar.get_height()/2,
+    #                 f"{val:.4f}", va="center", fontsize=10)
+    #     ax.set_xlabel("ROC-AUC")
+    #     ax.set_title("Model comparison after tuning", fontsize=12)
+    #     ax.spines[["top","right"]].set_visible(False)
+    #     st.pyplot(fig)
+    #     plt.close()
+    #
+    # with col2:
+    #     st.subheader("Perbaikan Baseline vs Tuned")
+    #     phases = ["Baseline RF", "Tuned RF", "Baseline LR", "Tuned LR", "Baseline GB", "Tuned GB"]
+    #     values = [0.7879, meta["all_model_aucs"].get("Random Forest",0.86),
+    #               0.7755, meta["all_model_aucs"].get("Logistic Regression",0.86),
+    #               0.7769, meta["all_model_aucs"].get("Gradient Boosting",0.86)]
+    #     clrs2  = [PALETTE["muted"], PALETTE["primary"],
+    #               PALETTE["muted"], PALETTE["primary"],
+    #               PALETTE["muted"], PALETTE["primary"]]
+    #     fig, ax = plt.subplots(figsize=(5, 3.5))
+    #     ax.bar(phases, values, color=clrs2, edgecolor="white", width=0.6)
+    #     ax.set_ylim(0.70, 0.90)
+    #     ax.set_ylabel("F1 / AUC Score")
+    #     ax.set_title("Baseline CV F1 vs Tuned AUC", fontsize=12)
+    #     ax.tick_params(axis="x", rotation=30)
+    #     ax.spines[["top","right"]].set_visible(False)
+    #     st.pyplot(fig)
+    #     plt.close()
 
    
 
