@@ -1,6 +1,6 @@
 FROM python:3.12
 
-WORKDIR /app
+WORKDIR /capstone-project
 
 COPY requirements.txt .
 
