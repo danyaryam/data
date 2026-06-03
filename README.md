@@ -55,12 +55,6 @@ docker build -t psy-screening .
 docker run -p 8501:8501 psy-screening
 ```
 
-## 📝 Catatan
-
-- Semua konfigurasi untuk aplikasi Streamlit (judul, tata letak, ikon) diatur di `app.py`
-- Visualisasi data menggunakan palet warna khusus untuk konsistensi
-- Seaborn dikonfigurasi untuk grafis berkualitas publikasi
-- Peringatan ditekan untuk menjaga output tetap bersih
 
 ## 👨‍💻 Contoh Penggunaan
 
